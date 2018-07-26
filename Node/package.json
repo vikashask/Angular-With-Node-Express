@@ -1,0 +1,39 @@
+{
+  "name": "express-mongodb-chai-mocha",
+  "version": "1.0.0",
+  "description": "book",
+  "main": "server.js",
+  "scripts": {
+    "start": "SET NODE_ENV=dev && node server.js",
+    "test": "mocha --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vikashraj144/express-mongodb-chai-mocha.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "monogo",
+    "chai",
+    "mocha"
+  ],
+  "author": "vikash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikashraj144/express-mongodb-chai-mocha/issues"
+  },
+  "homepage": "https://github.com/vikashraj144/express-mongodb-chai-mocha#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.0.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "config": "^1.30.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.11",
+    "morgan": "^1.9.0"
+  }
+}
