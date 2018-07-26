@@ -18,6 +18,7 @@ import { RestService } from './shared/rest.service';
 import { appRoutes } from './app-routes';
 import { AppComponent } from './app.component';
 import { ProductService } from './shared/service/products/product.service';
+import { BookService } from './shared/service/book/book.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProductService } from './shared/service/products/product.service';
   providers: [
     RestService,
     UserService,
-    ProductService
+    ProductService,
+    BookService
   ],
   bootstrap: [AppComponent]
 })
