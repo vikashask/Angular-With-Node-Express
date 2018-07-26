@@ -1,3 +1,15 @@
-<p>
-  register works!
-</p>
+  
+  <mat-card class="register-card">
+      <form novalidate [formGroup]="loginform">
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput placeholder="username" value="" type="text" name="username" formControlName="username" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="password" value="" type="password" name="password" formControlName="password" required>
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-button type="submit" (click)="onRegister()">Register</button>
+      </form>
+    </mat-card>
