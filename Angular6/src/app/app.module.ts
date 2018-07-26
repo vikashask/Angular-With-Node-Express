@@ -19,10 +19,12 @@ import { appRoutes } from './app-routes';
 import { AppComponent } from './app.component';
 import { ProductService } from './shared/service/products/product.service';
 import { BookService } from './shared/service/book/book.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
