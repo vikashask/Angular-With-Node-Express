@@ -1,6 +1,6 @@
 import { RestService } from './../../rest.service';
 import { UserService } from './../../service/user/user.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,16 +13,14 @@ export class LoginComponent implements OnInit {
   username: FormControl;
   password: FormControl;
 
-
   userdata: any;
   errorMessage = '';
 
   constructor(private _userService: UserService, private restWrapperService: RestService) { }
 
-
   ngOnInit() {
+    this.createFormControls();
     this.createForm();
-
   }
 
   createForm() {
@@ -32,6 +30,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  createFormControls() {
+    this.username = new FormControl('', [
+      Validators.required,
+      Validators.pattern('[^ @]*@[^ @]*')
+    ]);
+    this.password = new FormControl('', [
+      Validators.required,
+      Validators.minLength(8)
+    ]);
+  }
   onSubmit() {
     const loginFormData = {
       username: this.loginform.controls.username.value,
