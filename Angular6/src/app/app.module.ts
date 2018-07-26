@@ -20,11 +20,13 @@ import { AppComponent } from './app.component';
 import { ProductService } from './shared/service/products/product.service';
 import { BookService } from './shared/service/book/book.service';
 import { LoginComponent } from './shared/components/login/login.component';
+import { RegisterComponent } from 'src/app/shared/components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
