@@ -1,3 +1,4 @@
+import { OnlyLoggedInUsersGuard } from './shared/service/guard/only-loggedIn-users-guard';
 import { UserService } from './shared/service/user/user.service';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { RegisterComponent } from 'src/app/shared/components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BookComponent } from './components/book/book.component';
+import { AlwaysAuthGuard } from './shared/service/guard/always-auth-guard';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { BookComponent } from './components/book/book.component';
     RestService,
     UserService,
     ProductService,
-    BookService
+    BookService,
+    AlwaysAuthGuard,
+    OnlyLoggedInUsersGuard,
   ],
   bootstrap: [AppComponent]
 })
