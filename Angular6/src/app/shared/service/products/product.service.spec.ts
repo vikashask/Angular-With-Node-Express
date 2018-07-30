@@ -28,4 +28,8 @@ describe('ProductService', () => {
         httpMock.verify();
     });
 
+    it('should be created', inject([ProductService], (service: ProductService) => {
+        expect(service).toBeTruthy();
+    }));
+
 });
