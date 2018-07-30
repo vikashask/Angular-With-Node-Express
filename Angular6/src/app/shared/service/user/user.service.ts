@@ -8,6 +8,10 @@ import { IKeyValue } from '../../key-value.interface';
 export class UserService {
     constructor(private _restService: RestService) { }
 
+    isLoggedIn(): boolean {
+        return false;
+    }
+
     getUser() {
         const headers = this._restService.setHeaders([
             // {key: 'Authorization', value: `Bearer ${environment.security_token}`},
