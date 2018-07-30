@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "1d050384-352a-4e59-8e12-a3a7c99848ff",
+		"name": "express-mongodb-chai-mocha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"vikashraj144@gmail.com\",\n\t\"password\":\"123456789\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"vikash\",\n\t\"lastName\":\"verma\",\n\t\"age\":\"31\",\n\t\"email\":\"vikashraj144@gmail.com\",\n\t\"password\":\"123456789\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				},
+				"description": "register"
+			},
+			"response": []
+		}
+	]
+}
