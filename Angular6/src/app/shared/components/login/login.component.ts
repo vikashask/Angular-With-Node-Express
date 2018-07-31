@@ -1,7 +1,7 @@
 import { RestService } from './../../rest.service';
 import { UserService } from './../../service/user/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   loginform: FormGroup;
-  username: FormControl;
+  email: FormControl;
   password: FormControl;
-
-  userdata: any;
-  errorMessage = '';
+  loginInfo: any;
 
   constructor(private _userService: UserService, private restWrapperService: RestService) { }
 
@@ -25,13 +23,13 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginform = new FormGroup({
-      username: this.username,
+      email: this.email,
       password: this.password
     });
   }
 
   createFormControls() {
-    this.username = new FormControl('', [
+    this.email = new FormControl('', [
       Validators.required,
       Validators.pattern('[^ @]*@[^ @]*')
     ]);
@@ -40,19 +38,20 @@ export class LoginComponent implements OnInit {
       Validators.minLength(8)
     ]);
   }
+
   onSubmit() {
     const loginFormData = {
-      username: this.loginform.controls.username.value,
+      email: this.loginform.controls.email.value,
       password: this.loginform.controls.password.value
     };
     this._userService.userLogin(loginFormData).subscribe(
       (rsp: any) => {
         if (rsp) {
           console.log(rsp, 'response after final step');
-          this.userdata = rsp;
+          this.loginInfo = rsp.msg;
         }
       },
-      error => this.errorMessage = 'An error was encountered loading your order history.'
+      error => this.loginInfo = 'An error was encountered loading your order history.'
     );
   }
 }
