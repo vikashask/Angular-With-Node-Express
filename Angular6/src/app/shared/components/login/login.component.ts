@@ -2,6 +2,7 @@ import { RestService } from './../../rest.service';
 import { UserService } from './../../service/user/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
   password: FormControl;
   loginInfo: any;
 
-  constructor(private _userService: UserService, private restWrapperService: RestService) { }
+  @Output() isLogin = new EventEmitter<boolean>();
+
+  constructor(private _userService: UserService, private restWrapperService: RestService, private router: Router) { }
 
   ngOnInit() {
     this.createFormControls();
@@ -49,6 +52,10 @@ export class LoginComponent implements OnInit {
         if (rsp) {
           console.log(rsp, 'response after final step');
           this.loginInfo = rsp.msg;
+          this.isLogin.emit(true);
+
+          this._userService.isLoggedIn(true);
+          this.router.navigate(['dashboard']);
         }
       },
       error => this.loginInfo = 'An error was encountered loading your order history.'
