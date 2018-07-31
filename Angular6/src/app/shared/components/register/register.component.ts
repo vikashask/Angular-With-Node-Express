@@ -1,7 +1,7 @@
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestService } from './../../rest.service';
 import { UserService } from './../../service/user/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
   password: FormControl;
   age: FormControl;
   registerInfo: any;
+
+  @Output() isRegister = new EventEmitter<boolean>();
 
   constructor(private _userService: UserService, private restWrapperService: RestService) { }
 
@@ -67,6 +69,7 @@ export class RegisterComponent implements OnInit {
       (rsp: any) => {
         if (rsp) {
           this.registerInfo = rsp.msg;
+          this.isRegister.emit(true);
         }
       },
       error => this.registerInfo = 'An error was encountered loading your order history.'
