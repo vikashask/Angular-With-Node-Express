@@ -36,25 +36,25 @@ function postUser(req, res) {
 }
 
 /*
- * POST /book to save a new book.
+ * POST /login to save a new book.
  */
 function login(req, res) {
     User.find({email:req.body.email,password:req.body.password},(function(error,data){
-        if(data){
+        if(data.length>0){
             const loginDetails = {
                 data:data,
-                msg:'login sussessfull',
+                msg:'login successfully',
                 isLogin:true
             }
             console.log(loginDetails);
-            res.json(data);
+            res.json(loginDetails);
         }else{
             const loginDetails = {
                 data:data,
                 msg:'Invalid details',
                 isLogin:false
             }
-            res.json(data)
+            res.json(loginDetails)
         }
     }));
 }
@@ -69,7 +69,7 @@ function register(req, res) {
                 res.send(err);
             } else {
                 res.send({
-                    message: "User addd!",
+                    msg: "User added successfully!",
                     user
                 });
             }
