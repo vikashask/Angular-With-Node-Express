@@ -23,13 +23,18 @@ export class UserService {
     }
 
     userLogin(loginFormData) {
-        const payload = { email: loginFormData.username, password: loginFormData.password };
-
         const headers: IKeyValue[] = [
             { key: 'Content-Type', value: 'application/json' }
         ];
         const userUrl = environment.base_url + '/login';
-        const data = this._restService.post(userUrl, payload, headers);
-        return data;
+        return this._restService.post(userUrl, loginFormData, headers);
+    }
+
+    userRegister(registerFormData) {
+        const headers: IKeyValue[] = [
+            { key: 'Content-Type', value: 'application/json' }
+        ];
+        const userUrl = environment.base_url + '/register';
+        return this._restService.post(userUrl, registerFormData, headers);
     }
 }
