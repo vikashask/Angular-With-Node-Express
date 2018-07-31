@@ -8,8 +8,16 @@ import { IKeyValue } from '../../key-value.interface';
 export class UserService {
     constructor(private _restService: RestService) { }
 
-    isLoggedIn(): boolean {
-        return false;
+    isLogInData: boolean;
+    isLoggedIn(isLogin = false): boolean {
+        if (isLogin) {
+            return this.isLogInData = true;
+        } else {
+            if (this.isLogInData) {
+                return this.isLogInData;
+            }
+            return this.isLogInData = false;
+        }
     }
 
     getUser() {
