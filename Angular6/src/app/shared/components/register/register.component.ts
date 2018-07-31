@@ -9,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  loginform: FormGroup;
-  username: FormControl;
+  registerForm: FormGroup;
+  firstName: FormControl;
+  lastName: FormControl;
+  email: FormControl;
   password: FormControl;
+  age: FormControl;
+  registerInfo: any;
 
   constructor(private _userService: UserService, private restWrapperService: RestService) { }
 
@@ -21,14 +25,17 @@ export class RegisterComponent implements OnInit {
   }
 
   createForm() {
-    this.loginform = new FormGroup({
-      username: this.username,
-      password: this.password
+    this.registerForm = new FormGroup({
+      email: this.email,
+      password: this.password,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      age: this.age
     });
   }
 
   createFormControls() {
-    this.username = new FormControl('', [
+    this.email = new FormControl('', [
       Validators.required,
       Validators.pattern('[^ @]*@[^ @]*')
     ]);
@@ -36,9 +43,34 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.minLength(8)
     ]);
+    this.firstName = new FormControl('', [
+      Validators.required,
+    ]);
+    this.lastName = new FormControl('', [
+      Validators.required,
+    ]);
+    this.age = new FormControl('', [
+      Validators.required,
+    ]);
   }
 
   onRegister() {
-    console.log('register');
+    const registerFormData = {
+      email: this.registerForm.controls.email.value,
+      password: this.registerForm.controls.password.value,
+      firstName: this.registerForm.controls.firstName.value,
+      lastName: this.registerForm.controls.lastName.value,
+      age: this.registerForm.controls.age.value,
+    };
+    console.log(registerFormData, 'register');
+    this._userService.userRegister(registerFormData).subscribe(
+      (rsp: any) => {
+        if (rsp) {
+          this.registerInfo = rsp.msg;
+        }
+      },
+      error => this.registerInfo = 'An error was encountered loading your order history.'
+    );
+
   }
 }
