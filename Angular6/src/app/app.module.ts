@@ -35,7 +35,7 @@ import { AlwaysAuthGuard } from './shared/service/guard/always-auth-guard';
     BookComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
