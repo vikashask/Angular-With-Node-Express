@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
           this.isRegister.emit(true);
         }
       },
-      error => this.registerInfo = 'An error was encountered loading your order history.'
+      error => this.registerInfo = 'An error was encountered loading.'
     );
 
   }
