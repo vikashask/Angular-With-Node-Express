@@ -1,3 +1,4 @@
+import { BookListComponent } from './components/book-list/book-list.component';
 import { BookComponent } from './components/book/book.component';
 import { RegisterComponent } from 'src/app/shared/components/register/register.component';
 import { LoginComponent } from './shared/components/login/login.component';
@@ -17,7 +18,7 @@ export const appRoutes: Routes = [
         component: DashboardComponent,
         children: [
             { path: '', redirectTo: 'books', pathMatch: 'full' },
-            { path: 'books', component: BookComponent },
+            { path: 'books', component: BookListComponent },
         ],
         canActivate: [OnlyLoggedInUsersGuard, AlwaysAuthGuard]
     },
