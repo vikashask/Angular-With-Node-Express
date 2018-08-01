@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['dashboard']);
         }
       },
-      error => this.loginInfo = 'An error was encountered loading your order history.'
+      error => this.loginInfo = 'An error was encountered.'
     );
   }
 }
