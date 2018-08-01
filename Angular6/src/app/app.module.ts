@@ -23,7 +23,6 @@ import { BookService } from './shared/service/book/book.service';
 import { LoginComponent } from './shared/components/login/login.component';
 import { RegisterComponent } from 'src/app/shared/components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { BookComponent } from './components/book/book.component';
 import { AlwaysAuthGuard } from './shared/service/guard/always-auth-guard';
 import { BookListComponent } from './components/book-list/book-list.component';
 
@@ -33,7 +32,6 @@ import { BookListComponent } from './components/book-list/book-list.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    BookComponent,
     BookListComponent,
   ],
   imports: [
