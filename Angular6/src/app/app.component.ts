@@ -10,15 +10,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  isLogIn = false;
   constructor(private _userService: UserService) { }
 
   ngOnInit() {
-
+    this.isLogIn = this._userService.isLoggedIn();
   }
 
   onRegister(e) {
     console.log(e, 'onregister');
   }
 
+  logout() {
+    console.log();
+
+  }
 }
