@@ -1,17 +1,11 @@
 
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span><a routerLink = "login"> Login</a></span>
-      <span><a routerLink = "register"> Register</a></span>
+      <div *ngIf = "!isLogIn">
+        <span><a routerLink = "login"> Login</a></span>
+        <span><a routerLink = "register"> Register</a></span>
+      </div>
+      <span *ngIf="isLogIn" ><a class="logout" (click)="logout()"> logout</a></span>      
     </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
-
-<!-- <div class="card-container">
-  <mat-tab-group>
-    <mat-tab label="Login"> <app-login (isLogin) ="onLogin($event)"></app-login> </mat-tab>
-    <mat-tab label="Register"> <app-register (isRegister) ="onRegister($event)"></app-register> </mat-tab>
-    <mat-tab label="Dashboard"> <app-dashboard></app-dashboard> </mat-tab>
-    
-  </mat-tab-group>
-</div> -->
