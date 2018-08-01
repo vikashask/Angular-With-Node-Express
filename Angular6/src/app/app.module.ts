@@ -25,6 +25,7 @@ import { RegisterComponent } from 'src/app/shared/components/register/register.c
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BookComponent } from './components/book/book.component';
 import { AlwaysAuthGuard } from './shared/service/guard/always-auth-guard';
+import { BookListComponent } from './components/book-list/book-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AlwaysAuthGuard } from './shared/service/guard/always-auth-guard';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    BookComponent
+    BookComponent,
+    BookListComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { useHash: true }),
