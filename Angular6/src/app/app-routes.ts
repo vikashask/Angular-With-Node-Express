@@ -1,5 +1,4 @@
 import { BookListComponent } from './components/book-list/book-list.component';
-import { BookComponent } from './components/book/book.component';
 import { RegisterComponent } from 'src/app/shared/components/register/register.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { AlwaysAuthGuard } from './shared/service/guard/always-auth-guard';
