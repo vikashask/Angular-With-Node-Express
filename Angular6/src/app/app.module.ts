@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 
 import { HttpModule } from '@angular/http';
@@ -25,6 +25,7 @@ import { RegisterComponent } from 'src/app/shared/components/register/register.c
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AlwaysAuthGuard } from './shared/service/guard/always-auth-guard';
 import { BookListComponent } from './components/book-list/book-list.component';
+import { AuthorisedPageComponent } from './components/authorised-page/authorised-page.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,14 @@ import { BookListComponent } from './components/book-list/book-list.component';
     RegisterComponent,
     DashboardComponent,
     BookListComponent,
+    AuthorisedPageComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule,
+    // FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     HttpModule,
