@@ -60,7 +60,18 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({
     type: 'application/json'
 }));
+
+/* 
+adding jwt for below api 
+like:- http://localhost:8080/api/authenticate
+http://localhost:8080/api/data
+*/
 app.set('secrectKey', config.secret); // secret variable
+var routesApi = express.Router();
+const auth = require('./app/routes/authenticate');
+routesApi.post('/authenticate', auth.authenticate);
+app.use('/api',routesApi);
+// ending jwt
 
 // route
 app.get("/", (req, res) => res.json({
