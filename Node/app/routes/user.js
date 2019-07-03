@@ -39,7 +39,7 @@ function postUser(req, res) {
  * POST /login to save a new book.
  */
 function login(req, res) {
-    User.find({email:req.body.email,password:req.body.password},(function(error,data){
+    User.find({email:req.body.email,password:req.body.password},{_id:0},(function(error,data){
         if(data.length>0){
             const loginDetails = {
                 data:data,
