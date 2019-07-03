@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.isLogIn = this._userService.isLoggedIn();
+    console.log("this.isLogIn",this.isLogIn);
+    
   }
 
   onRegister(e) {

@@ -1,7 +1,7 @@
 import { RestService } from './../../rest.service';
 import { UserService } from './../../service/user/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,12 +14,16 @@ export class LoginComponent implements OnInit {
   email: FormControl;
   password: FormControl;
   loginInfo: any;
+  // used to send message and status code accounting to api response
+  statusCodeHttp:number;
+  messageHttp:string;
 
   @Output() isLogin = new EventEmitter<boolean>();
 
   constructor(private _userService: UserService, private restWrapperService: RestService, private router: Router) { }
 
   ngOnInit() {
+    this.statusCodeHttp = 200;
     this.createFormControls();
     this.createForm();
   }
@@ -56,6 +60,12 @@ export class LoginComponent implements OnInit {
 
           this._userService.isLoggedIn(true);
           this.router.navigate(['dashboard']);
+
+// change here the message and status code as per your requirement
+          if(rsp.statuscode === 401){
+            this.messageHttp = 'meeage for 401 Page';
+            this.statusCodeHttp = rsp.statuscode ;
+          }
         }
       },
       error => this.loginInfo = 'An error was encountered.'
