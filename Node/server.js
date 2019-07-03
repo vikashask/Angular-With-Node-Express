@@ -2,6 +2,8 @@ let express = require('express');
 let app = express();
 let mongoose = require('mongoose');
 let morgan = require('morgan');
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+
 let bodyParser = require('body-parser');
 let port = 8080;
 let book = require('./app/routes/book');
@@ -58,6 +60,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({
     type: 'application/json'
 }));
+app.set('secrectKey', config.secret); // secret variable
 
 // route
 app.get("/", (req, res) => res.json({
