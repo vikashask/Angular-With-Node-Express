@@ -41,10 +41,8 @@ if (config.util.getEnv('NODE_ENV') !== 'test') {
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
     // Request headers you wish to allow
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -63,13 +61,45 @@ app.use(bodyParser.json({
 
 /* 
 adding jwt for below api 
-like:- http://localhost:8080/api/authenticate
-http://localhost:8080/api/data
+like:-  http://localhost:8080/api/authenticate
+        http://localhost:8080/api/data
 */
-app.set('secrectKey', config.secret); // secret variable
+app.set('secrectKey', config.secrectKey); // secret variable
 var routesApi = express.Router();
 const auth = require('./app/routes/authenticate');
 routesApi.post('/authenticate', auth.authenticate);
+// route middleware to authenticate and check token
+routesApi.use(function (req, res, next) {
+	// check header or url parameters or post parameters for token
+	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    // decode token
+	if (token) {
+        // verifies secret and checks exp
+		jwt.verify(token, app.get('secrectKey'), function (err, decoded) {
+			if (err) {
+				return res.json({
+					success: false,
+					message: 'Failed to authenticate token.'
+				});
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;
+				next();
+			}
+		});
+	} else {
+		// if there is no token return an error
+		return res.status(403).send({
+			success: false,
+			message: 'No token provided.'
+		});
+	}
+});
+routesApi.get('/dashboard', function (req, res) {
+	res.json({
+		message: 'Welcome to Api/dashboard route'
+	});
+});
 app.use('/api',routesApi);
 // ending jwt
 
